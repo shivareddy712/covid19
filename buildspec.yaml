@@ -14,7 +14,7 @@ env:
   post_build:
     commands:
       - echo Build completed on `date`
-	  - mvn test     
+      - mvn test     
       - mvn sonar:sonar -Dsonar.login=$LOGIN -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=$testproject -Dsonar.organization=$shivareddy712
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
