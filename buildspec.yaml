@@ -1,5 +1,5 @@
 # Do not change version. This is the version of aws buildspec, not the version of your buldspec file.
-ersion: 0.2
+version: 0.2
 env:
   phases:
   pre_build:
@@ -8,18 +8,18 @@ env:
       - npm install
   build:
     commands:
-	- mvn test     
-      - mvn sonar:sonar -Dsonar.login=$LOGIN -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=$testproject -Dsonar.organization=$shivareddy712
-      - sleep 5
-      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
-      - cat result.json
-      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
       - echo Build started on `date`
       - echo Compiling
       - npm run build
   post_build:
     commands:
       - echo Build completed on `date`
+	  - mvn test     
+      - mvn sonar:sonar -Dsonar.login=$LOGIN -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=$testproject -Dsonar.organization=$shivareddy712
+      - sleep 5
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
+      - cat result.json
+      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
 # Include only the files required for your application to run.
 artifacts:
   files:
