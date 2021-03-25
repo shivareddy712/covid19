@@ -1,5 +1,11 @@
 # Do not change version. This is the version of aws buildspec, not the version of your buldspec file.
 version: 0.2
+env:
+  secrets-manager:
+    LOGIN: prod/sonar:dce2f6fa0f516d49d7baa7f20f2977a3b3ebbf8f
+    HOST: prod/sonar:https://sonarcloud.io/
+    Organization: prod/shivareddy712
+    Project: prod/sonar:testproject
 phases:
   pre_build:
     commands:
