@@ -3,8 +3,8 @@ version: 0.2
 env:
   variables:
     SONAR_LOGIN: "3a5d18bae90aaf019bfe417c84be55b50ada5ba3"
-    SONAR_HOST: "http://3.227.0.99:9000/"
-  phases:
+    SONAR_HOST: "http://3.227.0.99:9000"
+phases:
   pre_build:
     commands:
       #installs dependencies into the node_modules/ directory
@@ -14,12 +14,15 @@ env:
       - echo Build started on `date`
       - echo Compiling
       - npm run build
-   build:
-    commands:
-    - mvn test
   post_build:
     commands:
-    - mvn sonar:sonar -Dsonar.login=$SONAR_LOGIN -Dsonar.host.url=$SONAR_HOST
+      - echo Build completed on `date`
+  build:
+    commands:
+      - mvn test
+  post_build:
+    commands:
+      - mvn sonar:sonar -Dsonar.login=$SONAR_LOGIN -Dsonar.host.url=$SONAR_HOST
 # Include only the files required for your application to run.
 artifacts:
   files:
