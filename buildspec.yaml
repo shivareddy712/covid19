@@ -2,8 +2,8 @@
 version: 0.2
 env:
   variables:
-    SONAR_LOGIN: "3a5d18bae90aaf019bfe417c84be55b50ada5ba3"
-    SONAR_HOST: "http://3.227.0.99:9000"
+    SONAR_LOGIN: 3a5d18bae90aaf019bfe417c84be55b50ada5ba3
+    SONAR_HOST: http://3.227.0.99:9000
 phases:
   pre_build:
     commands:
